@@ -1,9 +1,11 @@
-# 1. Library imports
 from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
 from joblib import load
+
+# 1. Load the trained regressor
+regressor = load(Path(__file__).parent / 'resources' / 'regressor.joblib')
 
 # 2. Create the app object
 app = FastAPI()
@@ -26,7 +28,6 @@ def get_name(name: str):
 #    JSON data and return the sklearn model prediction
 @app.post('/predict')
 def predict(x1: float, x2: float, x3: float, x4: float):
-    regressor = load(Path(__file__).parent / 'resources' / 'regressor.joblib')
     y = regressor.predict(X=[[x1, x2, x3, x4]])
     return {
         'prediction': y[0]
