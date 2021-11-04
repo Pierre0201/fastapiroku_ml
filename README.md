@@ -1,2 +1,2 @@
 # fastapiroku_ml
-A demo of some ML model deployed as a REST API with Heroku. 
+A demo of a `sklearn` regression model deployed as a REST API with `fastapi` and Heroku. 
